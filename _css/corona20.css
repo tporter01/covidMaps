@@ -1,0 +1,157 @@
+.table-covid { 
+	font-size: 12px;
+}
+
+.row {margin-right: -30px;}
+
+#map {
+	min-height: 500px;
+	border: 1px solid #ccc;
+}
+#mapC {
+	min-height: 500px;
+	border: 1px solid #ccc;
+}
+#mapD {
+	min-height: 500px;
+	border: 1px solid #ccc;
+}
+#master {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 10px;
+    font-family: Helvetica;
+}
+#header {
+    width: 100%;
+    height: 64px;
+    border: 1px solid #ccc;
+    padding: 6px;
+    box-shadow: 5px 5px 4px #b0b0b0;
+}
+
+#myButton {
+    width: 220px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    }
+    
+#main {
+    padding: 10px;
+}
+
+#logo {
+	float: left;
+	font-family: Helvetica;
+	font-size: 2.1em;
+	font-weight: bold;
+	text-shadow: 2px 2px 3px #cccccc;
+	vertical-align: middle;
+	color: #0066cc;
+	margin-top: -4px;
+	margin-left: 15px;
+	
+}
+
+#logoR {
+	float: right;
+	margin-left: 20px;
+	margin-right: 15px;
+	font-family: Helvetica;
+	font-size: 2.1em;
+	font-weight: bold;
+	text-shadow: 2px 2px 3px #80c0ff;
+	vertical-align: middle;
+	color: #0090e0;	
+	margin-top: -4px;
+}
+
+.navbar{
+    background-image: linear-gradient(90deg, #D0E8FF, #49AEFC); 
+    border: 1px solid #2488DB;
+    height: 56px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.nav-link:hover {
+    background-color: 	#2488DB;
+    color: #202020;
+}
+.dropdown{
+    border-radius:0;
+    border:0;
+}
+.dropdown-menu{
+    background: #fefefe;
+    border: 1px solid #333;;
+    top:80%;
+    border-radius:0px 0px 5px 5px;
+}
+.dropdown-item:hover{
+    background:#2488DB;
+    color:#fff;
+}
+.dropdown-item:active{
+    background:#2488DB;
+    color:#fff;
+}
+
+.dropdown-menu a{
+    color:#333;
+} 
+.navbar .nav-item .nav-link{
+    text-shadow: 1px 1px 2px #404040;
+    color:#f0f0f0 !important; 
+    
+}
+.navbar .nav-item .nav-link:hover .navbar .nav-item .nav-link{
+    color:red !important;
+    
+}
+#rsc {
+    margin-top: 10px;
+}
+#stSelect {
+    border:1px solid #aaa; 
+    width: 60px; 
+    margin-right: 2px;
+    margin-left: -40px;
+    text-align:center;
+    position: relative;
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hiddeb;
+    
+}
+
+.scrollbar-primary::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5; 
+    }
+
+.scrollbar-primary::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #4285F4; 
+    }
+
+.scrollbar-primary {
+    scrollbar-color: #4285F4 #F5F5F5;
+}
+#stSelect a {
+    color: #333;
+    text-align:center;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 6px;
+    padding-left: 12px;
+    padding-right: 13px;    
+}
+#stSelect a:hover {
+    background-color: #4db8ff;
+    color: #FFFFF0;
+    }
+
+#mapRow {
+    margin-left: -40px;
+    }

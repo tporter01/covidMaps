@@ -1,0 +1,28 @@
+#div_map { min-width: 310px; max-width: 800px; margin: 0 auto; }
+.loading { margin-top: 10em; text-align: center; color: gray; }
+.table-covid { font-size: 13px;}
+.bs-example{
+	margin: 20px;
+}
+@media screen and (min-width: 768px) {
+  .dropdown:hover .dropdown-menu, .btn-group:hover .dropdown-menu{
+		display: block;
+	}
+	.dropdown-menu{
+		margin-top: 0;
+	}
+	.dropdown-toggle{
+		margin-bottom: 2px;
+	}
+	.navbar .dropdown-toggle, .nav-tabs .dropdown-toggle{
+		margin-bottom: 0;
+	}
+}
+
+body {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #4f5d6e;
+  position: relative;
+ }
