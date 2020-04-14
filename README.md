@@ -1,4 +1,5 @@
 # covidMaps
+![](covidmap400.gif)
 
 This project collects national Covid-19 infecxtion statistics and generates state maps with county by county data.  The output is in HTML suitable for integration into a website.
 
