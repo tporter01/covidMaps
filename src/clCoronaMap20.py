@@ -32,13 +32,13 @@ class coronaMap():
         print('  - generate topHeader')
         header = '<!DOCTYPE html>\n<html lang="en-us" class="theme-cyan" >\n<head>\n  <meta charset="utf-8">\n'
         header += '  <title>Covid-19: {0}</title>\n'.format(stateName)
-        headRequire = '<?php require "../_inc/coronaMap_header2.php"; ?>\n'
+        headRequire = '<?php require "_inc/coronaMap_header2.php"; ?>\n'
         header += headRequire 
         return header
 
     def genNavigation(self):
         print('  - generating navigation')
-        return '<?php require "../_inc/coronaMap_menu2.php"; ?>\n'
+        return '<?php require "_inc/coronaMap_menu2.php"; ?>\n'
     
     def genHighMapsCDN(self, stateCode):
         print('  - generate highcharts CDN entries')
@@ -56,11 +56,11 @@ class coronaMap():
         
     def getFooter(self):
         print('  - generating footer')
-        return '<?php require "../_inc/coronaMap_footer2.php"; ?>\n'
+        return '<?php require "_inc/coronaMap_footer2.php"; ?>\n'
 
     def genCovidGrid(self):
         print('  - generating grid system')
-        return '<?php require "../_inc/coronaMap_grid.php"; ?>\n'
+        return '<?php require "_inc/coronaMap_grid.php"; ?>\n'
 
 
     def genMapScript(self, stateCode, stateName):
@@ -182,7 +182,7 @@ class coronaMap():
         bodyCode2 = self.genMapScript(stateCode, stateName)
         footer = self.getFooter()
 
-        fh = open('./' + stateCodeLower + ".php", "w")
+        fh = open('../www/' + stateCodeLower + ".php", "w")
         fh.write(head1)
         fh.write(head2)
         fh.write(navigation)
@@ -215,10 +215,10 @@ class coronaMap():
 
 
     def __init__(self):
-        self.fsBase = "/Users/tporter/GitHub/coronaMap20/"
+        self.fsBase = ""
         #fsBase = '/home/bitnami/htdocs'
 
-        dbFilename = "/Users/tporter/census.db"
+        dbFilename = "census.db"
         #dbFilename = "/home/bitnami/census.db"
 
         self.states = {

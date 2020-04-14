@@ -7,12 +7,12 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="~corona/coronaX">Your Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="index.php">Your Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="ak.php">Covid-19</a>
         </li><li class="nav-item dropdown dmenu">
-          <a class="nav-link dropdown-toggle" href="<?=$baseURL?>/" id="navbardrop" data-toggle="dropdown">Blog Links</a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Blog Links</a>
           <div class="dropdown-menu sm-menu">
             <a class="dropdown-item" href="#">Link 1</a>
             <a class="dropdown-item" href="#" target="_blank">Link </a>
