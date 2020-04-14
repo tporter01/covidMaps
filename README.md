@@ -7,7 +7,7 @@ This project collects national Covid-19 infecxtion statistics and generates stat
 ### Requirements
   * macOS or Linux (Not tested on Windows)
   
-  * Apache2 (any web server supporting PHOP should work)
+  * Apache2 (configured to support Sites or Virtual Hosts)
   * PHP installed and configured with Apache2
   * Python 3.3+
   * SQLite 3.28+
@@ -16,7 +16,9 @@ This project collects national Covid-19 infecxtion statistics and generates stat
 
 ### Installing
 
-1. Install the following Python modules:
+1. Copy the 'scr' and 'www' directories to the location you will run the application from. 
+
+2. Install the following Python modules:
   * requests 2.23.0
   * urllib3 1.25.8
 
@@ -24,13 +26,18 @@ This project collects national Covid-19 infecxtion statistics and generates stat
      pip3 install requests urllib3
 ```
 
-2. Create a directory to host the generated maps.
-For this example, the website root will be used and maps placed in the COVID19 directory 
-
+3. Determine where to serve the generated maps from.  
+On macOS I recommend using the Sites folder.
+  * mscOS -Create a symbolic link from the www folder to your Sites folder
 ```
-mkdir /Users/<username>/Sites/COVID19
+Sites % ln -s <install root>/www /Users/<userID>/Sites/corona
 ```
 
+On Linux I found creating a folder off the documentRoot is easiest.
+  * Linux - Create a symbolic link from the www folder to the DocumentRoot
+```
+Sites % ln -s <install root>/www /<DocumentRootDir>/corona
+```
 End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
@@ -59,9 +66,6 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
@@ -73,7 +77,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Tim Porter** 
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
