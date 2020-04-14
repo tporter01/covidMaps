@@ -27,13 +27,14 @@ This project collects national Covid-19 infecxtion statistics and generates stat
 ```
 
 3. Determine where to serve the generated maps from.  
-On macOS I recommend using the Sites folder.
+
+a. On macOS I recommend using the Sites folder.
   * mscOS -Create a symbolic link from the www folder to your Sites folder
 ```
 Sites % ln -s <install root>/www /Users/<userID>/Sites/corona
 ```
 
-On Linux I found creating a folder off the documentRoot is easiest.
+b. On Linux I found creating a folder off the documentRoot is easiest.
   * Linux - Create a symbolic link from the www folder to the DocumentRoot
 ```
 Sites % ln -s <install root>/www /<DocumentRootDir>/corona
