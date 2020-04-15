@@ -25,14 +25,16 @@ pretty_errors.configure(
 )
 
 class coronaMap():
+    # -----------------------------------------------------
+    #
     def execSql(self, sql):
         cur = self.cn.cursor()       # create SQLite database connection
         cur.execute(sql)
-        rows = cur.fetchall()               # caputer all rows in a cursor
+        rows = cur.fetchall()        # caputer all rows in a cursor
         fields = [description[0] for description in cur.description]
         results = []
 
-        for row in rows:                    # then iterate through each row
+        for row in rows:             # then iterate through each row
             record = {}
             for fieldIndex in range(0, len(fields)):
                 fieldName = fields[fieldIndex]
@@ -42,18 +44,23 @@ class coronaMap():
         return results
 
     
+    # -----------------------------------------------------
+    #
     def genTopHeader(self, stateName):
         print('  - generate topHeader')
         header = '<!DOCTYPE html>\n<html lang="en-us" class="theme-cyan" >\n<head>\n  <meta charset="utf-8">\n'
         header += '  <title>Covid-19: {0}</title>\n'.format(stateName)
         headRequire = '<?php require "_inc/coronaMap_header2.php"; ?>\n'
-        header += headRequire 
-        return header
+        return headRequire
 
+    # -----------------------------------------------------
+    #
     def genNavigation(self):
         print('  - generating navigation')
         return '<?php require "_inc/coronaMap_menu2.php"; ?>\n'
     
+    # -----------------------------------------------------
+    #
     def genHighMapsCDN(self, stateCode):
         print('  - generate highcharts CDN entries')
         stateCodeLower = stateCode.lower()
@@ -61,25 +68,36 @@ class coronaMap():
         line1 = '  <script src="https://code.highcharts.com/maps/highmaps.js"></script>\n'
         line2 = '  <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>\n'
         CDN = line1 + line2 + stateMapCDN
-        return    CDN
+        return CDN
     
+    # -----------------------------------------------------
+    #
     def genBodyStart(self):
         print('  - generating body start')
         bstart = '<head>\n<body>\n<div id="master">\n'
         return bstart
         
+    # -----------------------------------------------------
+    #
     def getFooter(self):
         print('  - generating footer')
         return '<?php require "_inc/coronaMap_footer2.php"; ?>\n'
 
+    # -----------------------------------------------------
+    #
     def genCovidGrid(self):
         print('  - generating grid system')
         return '<?php require "_inc/coronaMap_grid.php"; ?>\n'
 
 
+    # -----------------------------------------------------
+    # Generate the JavaScript code for HighMaps integration
+    #
     def genMapScript(self, stateCode, stateName):
         print('  - Generartig state map script for:', stateName)
         stateCodeLower = stateCode.lower()
+        
+        # -- Generate the javascript to drive the HighCharts maps
         bodyCode2 = '\n'
         bodyCode2 += 'var chart1 = Highcharts.mapChart(\'mapC\', {chart: { map: \'countries/us/us-' + stateCodeLower + '-all\' },\n'
         bodyCode2 += '  title: { text: \'' + stateName + ' State COVID-19 Infections\' },\n'
@@ -105,6 +123,9 @@ class coronaMap():
         bodyCode2 += '</script>\n'
         return bodyCode2   
     
+    # -----------------------------------------------------
+    # Gets county population data from the Census database
+    #
     def getCountyPop(self, stateName, countyName):
         #print(len(countyName), countyName)
         countyName = countyName.replace('\'', "\'\'")
@@ -119,6 +140,9 @@ class coronaMap():
         if (len(retVal)==2):
             return max(int(retVal[0]['countyPop']), int(retVal[1]['countyPop']))
 
+    # -----------------------------------------------------
+    # Generates the locations dictionary structure of Covid-19 statistics
+    #
     def getCovidLocationData(self):
         print('pulling covid data update...')
         url = 'https://facts.csbs.org/covid-19/covid19_county.csv'
@@ -139,11 +163,12 @@ class coronaMap():
         return locations
 
 
-
+    # -----------------------------------------------------
+    # Combines data sources to create the statistics display table and
+    #   the covid19Data structure containing data for mapping
     def createMapForState(self, stateCode, stateName):
         print('  - creating state map :', stateName)
         try:
-            #locations = getCovidLocationData()
             stateCodeLower = stateCode.lower()
 
             stateMapUrl = 'https://code.highcharts.com/mapdata/countries/us/us-' + stateCodeLower + '-all.geo.json'
@@ -183,6 +208,9 @@ class coronaMap():
             print(ex)
         return countiesTableHtml + '\n' + cv19Data
     
+    # -----------------------------------------------------
+    # PHP page generation called for each state
+    #
     def assemblePage(self, stateCode, stateName):
         print('assemblePage:', stateCode)
         stateCodeLower = stateCode.lower()
@@ -209,32 +237,22 @@ class coronaMap():
         print('  :: Completed', stateName)
 
 
+    # -----------------------------------------------------
+    # Links county name to map 'hc-key' property
+    # 
     def getHCKey(self, stateMap, name):
         for dict in stateMap['features']:
             if dict['properties']['name'] == name:
-                return dict['properties']['hc-key']
-
-    def createIndex(self, states):
-        indexFile = open('COVID19/index.php', 'w')
-        indexFile.write('<?php require "/_header.php" ?>\n')
-        indexFile.write('<h1>States</h1>\n<ul>')
-    
-        for stateCode in self.states.keys():
-            stateCodeLower = stateCode.lower()
-            indexFile.write('<li><a href="' + stateCodeLower +'.html">' + self.states[stateCode] + '</a></li>\n')
-
-        indexFile.write('</ul>\n<?php require "../_inc/footer.php" ?>\n<ul>')
-
-    
+                return dict['properties']['hc-key']    
 
 
+    # -----------------------------------------------------
+    # Class __init__ function - initializes class variables and structures
+    #   Then iterated the list of states to generate a map for each
+    # 
     def __init__(self):
-        self.fsBase = ""
-        #fsBase = '/home/bitnami/htdocs'
-
         dbFilename = "census.db"
-        #dbFilename = "/home/bitnami/census.db"
-
+        self.fsBase = ""
         self.states = {
             'AK': 'Alaska',
             'AL': 'Alabama',
@@ -289,18 +307,14 @@ class coronaMap():
             'WY': 'Wyoming'
         }
 
+        # -- For testing --
         #assemblePage('AK', 'Alaska')
         self.locations = self.getCovidLocationData()
         if (os.path.exists(dbFilename)):      # check that the database exists
             self.cn = sqlite3.connect(dbFilename)
-            #assemblePage(fsBase, 'AK', 'Alaska', locations, cn)
-
             for stateCode in self.states.keys():
                 print(stateCode)
-                #createMapForState(stateCode, states[stateCode])
                 self.assemblePage(stateCode, self.states[stateCode])
-
-            #createIndex(states)
         else:
             print('Error: Cannot find database:', dbFilename)
 

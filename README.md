@@ -1,7 +1,7 @@
 # covidMaps
-![](covidmap400.gif)
+![](statemap600.png)
 
-This project collects national Covid-19 infecxtion statistics and generates state maps with county by county data.  The output is in HTML suitable for integration into a website.
+This project collects national Covid-19 infection statistics and generates state maps with county by county data.  The output is in HTML suitable for integration into a website.
 
 ## Installation
 ### Requirements
@@ -39,42 +39,52 @@ Sites % ln -s <install root>/www /Users/<userID>/Sites/corona
 ```
 Sites % ln -s <install root>/www /<DocumentRootDir>/corona
 ```
-End with an example of getting some data out of the system or using it for a little demo
+You should now be able to browse to http://localhost/~<userID>/corona/ and see the the default index.php page.
 
-## Running the tests
+![](test600.gif)
 
-Explain how to run the automated tests
+## Running the application to generate maps
 
-### Break down into end to end tests
+The clCoronaMap20.py script is located in the src directory.  Running it using Python 3 will generate the individual state maps into the www directory.  
+The maps will be visible by browsing to  http://localhost/<userID>/Corona. 
 
-Explain what these tests test and why
+### Testing
+
+Initially I recommend using the Alaska page for testing.  Uncomment the "assemblePage('AK', 'Alaska')" and comment out the three lines following the second '-- For testing' comment
+```
+    self.locations = self.getCovidLocationData()
+    if (os.path.exists(dbFilename)):      # check that the database exists
+        self.cn = sqlite3.connect(dbFilename)
+        # -- For testing --  uncomment the following line
+        #assemblePage('AK', 'Alaska')
+
+        # -- For testing comment out the following three lines
+        for stateCode in self.states.keys():
+            print(stateCode)
+            self.assemblePage(stateCode, self.states[stateCode])
+    else:
+        print('Error: Cannot find database:', dbFilename)
 
 ```
-Give an example
-```
 
-### And coding style tests
+### Time Formatting
 
-Explain what these tests test and why
+Depending on your preference, you can change the formatting of the Date/Time in the map subtitle.  Line 75 of the script displays using 24 hour time format in the first map.  Line 86 displays using 12 hours with AM/PM.  You'll need to determine the appropriate time zone based on your system's time configuration.
 
 ```
-Give an example
+	104  bodyCode2 += '  subtitle: { text: \'As of: ' + datetime.now().strftime("%A, %d %B %Y %H:%M UTC") + '\' },\n'
+
+	115  bodyCode2 += '  subtitle: { text: \'As of: ' + datetime.now().strftime("%A, %d %B %Y %I:%M%p ET") + '\' },\n'
+
 ```
 
-## Deployment
+## HighCharts and HighMaps
 
-Add additional notes about how to deploy this on a live system
-
-## Built With
+The map generation uses the HighMaps library.  HighCharts and HighMaps are licensed for non-commercial use - (Non-Profit or personal use)
+You can request a Non-Commercial license here - <https://shop.highsoft.com/noncomform>
 
 
 ## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
@@ -85,9 +95,5 @@ See also the list of [contributors](https://github.com/your/project/contributors
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+See HighCharts section above for other licensing requirements.
 
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
