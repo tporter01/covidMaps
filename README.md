@@ -1,5 +1,5 @@
 # covidMaps
-![](statemap600.png)
+![](images/statemap600.png)
 
 This project collects national Covid-19 infection statistics and generates state maps with county by county data.  The output is in HTML suitable for integration into a website.
 
@@ -41,7 +41,7 @@ Sites % ln -s <install root>/www /<DocumentRootDir>/corona
 ```
 You should now be able to browse to http://localhost/~<userID>/corona/ and see the the default index.php page.
 
-![](test600.gif)
+![](images/test600.gif)
 
 ## Running the application to generate maps
 
