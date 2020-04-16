@@ -83,12 +83,17 @@ Depending on your preference, you can change the formatting of the Date/Time in 
 The map generation uses the HighMaps library.  HighCharts and HighMaps are licensed for non-commercial use - (Non-Profit or personal use)
 You can request a Non-Commercial license here - <https://shop.highsoft.com/noncomform>
 
+## Census Database
+
+The census.db was generated from downloaded Census.gov data.  The relevant fields were imported into a SQLite table in the census.db database file.
 
 ## Contributing
 
+Shawn Porter (sporter42)
+
 ## Authors
 
-* **Tim Porter** 
+* **Tim Porter** (tporter01)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
