@@ -101,7 +101,7 @@ class coronaMap():
         bodyCode2 = '\n'
         bodyCode2 += 'var chart1 = Highcharts.mapChart(\'mapC\', {chart: { map: \'countries/us/us-' + stateCodeLower + '-all\' },\n'
         bodyCode2 += '  title: { text: \'' + stateName + ' State COVID-19 Infections\' },\n'
-        bodyCode2 += '  subtitle: { text: \'As of: ' + datetime.now().strftime("%A, %d %B %Y %I:%M%p ET") + '\' },\n'
+        bodyCode2 += '  subtitle: { text: \'As of: ' + datetime.now().strftime("%A, %d %B %Y %H:%M UTC") + '\' },\n'
         bodyCode2 += '  navigation: { buttonOptions: { enabled: false }},\n'
         bodyCode2 += "  colorAxis: { dataClasses: [{ from:  0, to:  25, color:'#FFFFD7'},{ from:  25, to: 50, color:'#FFFF00'},"
         bodyCode2 += "{ from: 50, to: 100, color:'#FFD700'},{ from: 100, to: 500, color:'#FFA000'},{ from: 500, to: 1000, color:'#FF8000'},"
@@ -187,7 +187,7 @@ class coronaMap():
                     countyPop = self.getCountyPop(stateName, countyName)
                     if (int(countyPop) > 0):
                         iCases = location['cases']
-                        sRate100k = '{0:0.3f}'.format((int(iCases)/int(countyPop)) * 100000)
+                        sRate100k = '{0:0.1f}'.format((int(iCases)/int(countyPop)) * 100000)
                         print('{0:20} {1:-6}  {2:-10} {3:>13}'.format(countyName, int(iCases), int(countyPop), sRate100k))
                         rowHtml += '<tr><td>{}</td><td class="text-right">{}</td><td class="text-right">{}</td><td class="text-right">{}</td</tr>\n'.format(
                             countyName, 
@@ -307,11 +307,13 @@ class coronaMap():
             'WY': 'Wyoming'
         }
 
-        # -- For testing --
-        #assemblePage('AK', 'Alaska')
         self.locations = self.getCovidLocationData()
         if (os.path.exists(dbFilename)):      # check that the database exists
             self.cn = sqlite3.connect(dbFilename)
+            # -- For testing --  uncomment the following line
+            #assemblePage('AK', 'Alaska')
+
+            # -- For testing comment out the following two lines
             for stateCode in self.states.keys():
                 print(stateCode)
                 self.assemblePage(stateCode, self.states[stateCode])
