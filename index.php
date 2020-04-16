@@ -8,5 +8,5 @@
 <body>
 <div id="master">
 <?php require "_inc/coronaMap_menu2.php"; ?>
-Select Covid19 from the menu to see the maps.
+Select Covid19 from the menu to see the generated maps.
 <?php require "_inc/coronaMap_footer1.php"; ?>
