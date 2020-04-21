@@ -151,7 +151,7 @@ class coronaMap():
             f = (line.decode('utf-8') for line in r.iter_lines())
             reader = csv.reader(f, delimiter=',', quotechar='"')
             for row in reader:
-                if (len(row)==10):
+                if (len(row)>=10):
                     if (row[0] == 'Unknown' or row[0] == 'Unassigned' or len(row)<10):
                         continue
                     countyName = row[0]

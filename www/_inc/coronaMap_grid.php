@@ -86,7 +86,7 @@
 							<th scope="col">County</th>
 							<th scope="col">Cases</th>
 							<th scope="col">Deaths</th>
-							<th scope="col">Rate/100k</th>
+							<th scope="col">Per100k</th>
 						</tr>
 					</thead>
 				<tbody>
